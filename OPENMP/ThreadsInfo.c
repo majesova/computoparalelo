@@ -1,21 +1,13 @@
-#include "stdio.h"
-#include <omp.h>
-#include <stdlib.h>
+#include "stdio.h"//librería de entrada y salida
+#include <omp.h>//Librería openmp
+#include <stdlib.h>//Librería para operaciones estándar
 int NCPU,tid,NPR,NTHR;
-/*
-omp_get_num_threads
-
-
-
-
-*/
 int main(int argc, char *argv[])
 {
-  #pragma omp parallel num_threads(5)
+  #pragma omp parallel num_threads(5)//Region donde se encuentra código para ejecutarse en paralelo
   {
-    
     /*Returns the number of processors that are available to
-    /the device at the tme the routne is called*/
+    /the device at the time the routine is called*/
     NCPU = omp_get_num_procs();
     /*Returns the thread number of the calling thread within
     the current team*/
@@ -35,7 +27,7 @@ int main(int argc, char *argv[])
       printf("# DE THREADS SOLICITADOS\t= %i\n",NTHR);
       printf("# DE THREADS DISPONIBLES PR\t= %i\n",NPR);
     }else{
-    printf("Hello multicore user! I am thread %i out of %i\n",tid,NPR);
+      printf("Hello multicore user! I am thread %i out of %i\n",tid,NPR);
     }
   }
   return(0);

@@ -15,8 +15,7 @@ int main(int argc, char *argv[])
 	int t=0;
 
 	/*Crea la variable t privada para cada Thread
-	al finzalizar combina los resultados previos*/
-	//#pragma omp parallel num_threads(3) 
+	al finalizar combina los resultados previos*/
 	#pragma omp parallel reduction(+:t)
 	{
 		

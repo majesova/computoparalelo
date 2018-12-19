@@ -13,25 +13,24 @@ printf("Soy el thread %d, fuera de los singles\n");
 
 int main(int argc, char *argv[])
 {
-	#pragma omp parallel num_threads(1) 
+	#pragma omp parallel num_threads(8) 
 	{
-		#pragma master
+		//Se ejecuta una sola vez en el hilo maestro, usualmente es el 0.
+		#pragma omp master
 		{ 
 			printf("Soy el thread MASTER %d, actuando en solitario dentro del primer bloque \n",omp_get_thread_num()); 
-			
 		}
-		#pragma master
+		#pragma omp master
 		{ 
 			printf("Soy el thread MASTER %d, actuando en solitario dentro ddel segundo bloque \n",omp_get_thread_num()); 
 			
 		} 
-		#pragma master
+		#pragma omp master
 		{ 
 			printf("Soy el thread MASTER %d, actuando en solitario dentro ddel tercer bloque \n",omp_get_thread_num()); 
 		}
-
-		// QUÉ OCURRE EN ESTA SECCION ??
-		printf("Soy el thread %d, fuera de los singles\n",omp_get_thread_num()); 
+		//Esta sección se ejecuta por cada hilo
+		printf("Soy el thread %d, fuera del master\n",omp_get_thread_num()); 
 	}//parallel
 
 	return(0);

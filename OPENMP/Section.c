@@ -21,8 +21,8 @@ int main(int argc, char *argv[])
 	#pragma omp parallel
 	#pragma omp sections
 */
-	#pragma omp parallel sections
-	{
+	#pragma omp parallel sections num_threads(10) 
+	{	//La directiva section permite ejecutar varios bloques de código paralelo agrupados por secciones
 		 #pragma omp section
 		{
 			 printf("Task A: thread_num %d\n", omp_get_thread_num());

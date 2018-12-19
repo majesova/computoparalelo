@@ -11,14 +11,15 @@ int main(int argc, char *argv[])
     const int N = 8;
     int i, a[N];
     int suma=0;
-    //AGREGAR PRAGMA PARALLEL
-      #pragma omp parallel num_threads(8) 
+    
+      #pragma omp parallel num_threads(8) //ärea que contiene el código paralelo
       {
-            //AGREGAR FOR
+            //for que se va ejecutar con los hilos especificados arriba
+            //Igual se puede poner en línea el parallel con el for
             #pragma omp for  
-            for (i = 0; i < 80; i++){
+            for (i = 0; i < 16; i++){
                 a[i] = 2 * i;
-
+                //Se imprime valores del for con el hilo que lo ejecuta
                 printf("Task [%d]: thread: %d\n", i+1,omp_get_thread_num());
             }
         }
